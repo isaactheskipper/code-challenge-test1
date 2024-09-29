@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Generator</title>
+    <script src="gradeGenerator.js" defer></script>
+</head>
+<body>
+    <h1>Student Grade Generator</h1>
+    <label for="marksInput">Enter Student Marks:</label>
+    <input type="number" id="marksInput" placeholder="Enter marks between 0-100">
+    <button onclick="generateGrade()">Get Grade</button>
+    <p id="gradeOutput"></p>
+
+    <script>
+        function generateGrade() {
+            const marks = document.getElementById('marksInput').value;
+            const grade = gradeGenerator(marks);
+            document.getElementById('gradeOutput').textContent = `Grade: ${grade}`;
+        }
+    </script>
+</body>
+</html>

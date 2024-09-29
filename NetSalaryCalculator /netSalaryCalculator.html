@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Salary Calculator</title>
+    <script src="netSalaryCalculator.js" defer></script>
+
+</head>
+<body>
+
+    <div id="calculator">
+        <h2>Net Salary Calculator</h2>
+        <label for="basicSalaryInput">Basic Salary:</label>
+        <input type="number" id="basicSalaryInput" placeholder="Enter basic salary">
+
+        <label for="benefitsInput">Benefits:</label>
+        <input type="number" id="benefitsInput" placeholder="Enter benefits">
+
+        <button onclick="calculateNetSalary()">Calculate Net Salary</button>
+
+        <div id="result">
+            <h3>Salary Breakdown:</h3>
+            <p id="grossPayOutput"></p>
+            <p id="payeeOutput"></p>
+            <p id="NHIFOutput"></p>
+            <p id="NSSFOutput"></p>
+            <p id="netSalaryOutput"></p>
+        </div>
+    </div>
+
+   
+    
+</body>
+</html>

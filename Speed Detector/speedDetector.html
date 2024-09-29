@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Detector</title>
+    <script src="speedDetector.js" defer></script>
+</head>
+<body>
+    <h1>Speed Detector</h1>
+    <label for="speedInput">Enter Speed (km/h):</label>
+    <input type="number" id="speedInput" placeholder="Enter speed">
+    <button onclick="checkSpeed()">Check Speed</button>
+    <p id="speedOutput"></p>
+
+    <script>
+        function checkSpeed() {
+            const speed = document.getElementById('speedInput').value;
+            const result = speedDetector(speed);
+            document.getElementById('speedOutput').textContent = result;
+        }
+    </script>
+</body>
+</html>
