@@ -1,5 +1,4 @@
 function netsalarycalculator(basicsalary, benefits) {
-    // NHIF deduction logic based on gross pay
     function calculateNHIF(grosspay) {
         if (grosspay <= 5999) return 150;
         else if (grosspay <= 7999) return 300;
@@ -36,7 +35,10 @@ function netsalarycalculator(basicsalary, benefits) {
 
     const NHIFdeductions = calculateNHIF(grosspay);
 
-    const totalDeductions = payee + NHIFdeductions + NSSFdeductions;
+    const housingLevyRate = 0.015;
+    const housingLevy = grosspay * housingLevyRate;
+
+    const totalDeductions = payee + NHIFdeductions + NSSFdeductions + housingLevy;
 
     const netSalary = grosspay - totalDeductions;
 
@@ -49,6 +51,7 @@ function netsalarycalculator(basicsalary, benefits) {
         payee,
         NHIFdeductions,
         NSSFdeductions,
+        housingLevy, 
         netSalary
     };
 }
@@ -69,6 +72,7 @@ function calculateNetSalary() {
         document.getElementById('payeeOutput').textContent = 'PAYE: N/A';
         document.getElementById('NHIFOutput').textContent = 'NHIF Deductions: N/A';
         document.getElementById('NSSFOutput').textContent = 'NSSF Deductions: N/A';
+        document.getElementById('housingLevyOutput').textContent = 'Housing Levy: N/A'; 
         document.getElementById('netSalaryOutput').textContent = 'Net Salary: N/A';
         return;
     }
@@ -77,5 +81,6 @@ function calculateNetSalary() {
     document.getElementById('payeeOutput').textContent = `PAYE: Ksh ${result.payee.toFixed(2)}`;
     document.getElementById('NHIFOutput').textContent = `NHIF Deductions: Ksh ${result.NHIFdeductions}`;
     document.getElementById('NSSFOutput').textContent = `NSSF Deductions: Ksh ${result.NSSFdeductions.toFixed(2)}`;
+    document.getElementById('housingLevyOutput').textContent = `Housing Levy: Ksh ${result.housingLevy.toFixed(2)}`; 
     document.getElementById('netSalaryOutput').textContent = `Net Salary: Ksh ${result.netSalary.toFixed(2)}`;
 }

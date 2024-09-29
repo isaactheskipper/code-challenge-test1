@@ -15,11 +15,10 @@ Git
 
 ### Installation instruction
 ```
-Git clone https://github.com/isaactheskipper/code-challenge-test1.git
-```
+https://isaactheskipper.github.io/code-challenge-test1/```
 
 # Live Link
-https://isaactheskipper.github.io/code-challenge-test1/
+https://isaactheskipper.github.io/code-challenge-test1/index.html
 ## Technologies used
 HTML
 Github
