@@ -1,10 +1,30 @@
- function netsalarycalculator(basicsalary, benefits) {
-    const NHIFdeductions = 850;
+function netsalarycalculator(basicsalary, benefits) {
+    // NHIF deduction logic based on gross pay
+    function calculateNHIF(grosspay) {
+        if (grosspay <= 5999) return 150;
+        else if (grosspay <= 7999) return 300;
+        else if (grosspay <= 11999) return 400;
+        else if (grosspay <= 14999) return 500;
+        else if (grosspay <= 19999) return 600;
+        else if (grosspay <= 24999) return 750;
+        else if (grosspay <= 29999) return 850;
+        else if (grosspay <= 34999) return 900;
+        else if (grosspay <= 39999) return 950;
+        else if (grosspay <= 44999) return 1000;
+        else if (grosspay <= 49999) return 1100;
+        else if (grosspay <= 59999) return 1200;
+        else if (grosspay <= 69999) return 1300;
+        else if (grosspay <= 79999) return 1400;
+        else if (grosspay <= 89999) return 1500;
+        else if (grosspay <= 99999) return 1600;
+        else return 1700; 
+    }
+
     const NSSFdeductionrate = 0.06;
     const NSSFdeductions = basicsalary * NSSFdeductionrate;
 
     const grosspay = basicsalary + benefits;
- 
+
     let payee = 0;
     if (grosspay <= 29000) {
         payee = grosspay * 0.25;
@@ -14,9 +34,15 @@
         payee = 7250 + 10550 + (grosspay - 40000) * 0.325;
     }
 
+    const NHIFdeductions = calculateNHIF(grosspay);
+
     const totalDeductions = payee + NHIFdeductions + NSSFdeductions;
 
     const netSalary = grosspay - totalDeductions;
+
+    if (netSalary <= 0) {
+        return null;
+    }
 
     return {
         grosspay,
@@ -37,6 +63,15 @@ function calculateNetSalary() {
     }
 
     const result = netsalarycalculator(basicSalary, benefits);
+
+    if (result === null) {
+        document.getElementById('grossPayOutput').textContent = 'Gross Pay: N/A';
+        document.getElementById('payeeOutput').textContent = 'PAYE: N/A';
+        document.getElementById('NHIFOutput').textContent = 'NHIF Deductions: N/A';
+        document.getElementById('NSSFOutput').textContent = 'NSSF Deductions: N/A';
+        document.getElementById('netSalaryOutput').textContent = 'Net Salary: N/A';
+        return;
+    }
 
     document.getElementById('grossPayOutput').textContent = `Gross Pay: Ksh ${result.grosspay.toFixed(2)}`;
     document.getElementById('payeeOutput').textContent = `PAYE: Ksh ${result.payee.toFixed(2)}`;
